@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                docker build -t simplepythonflask .
+                sh 'docker build -t simplepythonflask .'
             }
         }
         
