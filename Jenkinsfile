@@ -45,7 +45,7 @@ pipeline {
 	    sh 'docker stop teste'
 
 	telegramSend(message: 'Hello World', chatId: -4092859996)
-	telegramSend "Job $env.JOB_NAME* finalizado com sucesso na execução de numero $env.BUILD_NUMBER"
+	telegramSend "Job $env.JOB_NAME finalizado com sucesso na execução de numero $env.BUILD_NUMBER"
 	}
         unstable {
             echo 'I am unstable :/'
@@ -54,7 +54,7 @@ pipeline {
             echo 'Ocorreu uma falha'
 	    sh 'docker stop teste'
         
-	telegramSend "Job $env.JOB_NAME* finalizado com falha na execução de numero $env.BUILD_NUMBER, acesse $env.BUILD_URL para conferir os detalhes"
+	telegramSend "Job $env.JOB_NAME finalizado com falha na execução de numero $env.BUILD_NUMBER, acesse $env.BUILD_URL para conferir os detalhes"
 	}
         changed {
             echo 'Things were different before...'
