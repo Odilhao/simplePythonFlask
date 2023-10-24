@@ -42,7 +42,8 @@ pipeline {
 	    sh 'docker stop teste'
 
 	telegramSend(message: 'Hello World', chatId: -4092859996)
-        }
+        telegramSend "Ola"
+	}
         unstable {
             echo 'I am unstable :/'
         }
