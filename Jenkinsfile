@@ -7,9 +7,9 @@ pipeline {
       		telegramSend "Job $env.JOB_NAME foi iniciado com a execução de numero $env.BUILD_NUMBER, \
 		o commit foi realizado na branch $env.GIT_BRANCH \
 		acesse $env.BUILD_URL para conferir os detalhes, no Jenkins do Odilon."
-		sh '''
-		curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "-4092859996", "text": "Job '$env.JOB_NAME' foi iniciado com a execução de numero $env.BUILD_NUMBER, o commit foi realizado na branch '$env.GIT_BRANCH' acesse '$env.BUILD_URL' para conferir os detalhes, no Jenkins do Odilon.", "disable_notification": true}' https://api.telegram.org/bot6955164869:AAFGcHLUTEB5DELrxVqArjl0f0Dzc5wuBRE/sendMessage
-	'''
+		sh """
+		curl -X POST -H 'Content-Type: application/json' -d '{"chat_id": "-4092859996", "text": "Job $env.JOB_NAME foi iniciado com a execução de numero $env.BUILD_NUMBER, o commit foi realizado na branch $env.GIT_BRANCH acesse $env.BUILD_URL para conferir os detalhes, no Jenkins do Odilon.", "disable_notification": true}' https://api.telegram.org/bot6955164869:AAFGcHLUTEB5DELrxVqArjl0f0Dzc5wuBRE/sendMessage
+	"""
                 sh 'docker build -t simplepythonflask .'
             }
         }
