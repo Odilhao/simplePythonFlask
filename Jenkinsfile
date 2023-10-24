@@ -40,7 +40,7 @@ pipeline {
         success {
             echo "Finalizei com sucesso"
 	    sh 'docker stop teste'
- 	    telegramSend(message: 'Hello World', chatId: '-4092859996')
+ 	    telegramSend "Hellow World"
         }
         unstable {
             echo 'I am unstable :/'
