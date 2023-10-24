@@ -6,7 +6,7 @@ pipeline {
             steps {
       		telegramSend "Job $env.JOB_NAME foi iniciado com a execução de numero $env.BUILD_NUMBER, \
 		o commit foi realizado na branch $env.GIT_BRANCH \
-		acesse $env.BUILD_URL para conferir os detalhes."
+		acesse $env.BUILD_URL para conferir os detalhes, no Jenkins do Odilon."
                 sh 'docker build -t simplepythonflask .'
             }
         }
@@ -44,8 +44,7 @@ pipeline {
             echo "Finalizei com sucesso"
 	    sh 'docker stop teste'
 
-	telegramSend(message: 'Hello World', chatId: -4092859996)
-	telegramSend "Job $env.JOB_NAME finalizado com sucesso na execução de numero $env.BUILD_NUMBER"
+	telegramSend "Job $env.JOB_NAME finalizado com sucesso na execução de numero $env.BUILD_NUMBER, no Jenkins do Odilon."
 	}
         unstable {
             echo 'I am unstable :/'
@@ -54,7 +53,7 @@ pipeline {
             echo 'Ocorreu uma falha'
 	    sh 'docker stop teste'
         
-	telegramSend "Job $env.JOB_NAME finalizado com falha na execução de numero $env.BUILD_NUMBER, acesse $env.BUILD_URL para conferir os detalhes"
+	telegramSend "Job $env.JOB_NAME finalizado com falha na execução de numero $env.BUILD_NUMBER, acesse $env.BUILD_URL para conferir os detalhes, no Jenkins do Odilon"
 	}
         changed {
             echo 'Things were different before...'
