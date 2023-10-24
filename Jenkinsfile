@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-      		telegramSend "Job $env.JOB_NAME foi iniciado com a execução de numero $env.BUILD_NUMBER, acesse $env.BUILD_URL para conferir os detalhes"
+      		telegramSend "Job $env.JOB_NAME foi iniciado com a execução de numero $env.BUILD_NUMBER, \
+		o commit foi realizado por $env.GIT_COMMITTER_NAME <$env.GIT_COMMITTER_EMAIL> no branch $env.GIT_BRANCH \
+		acesse $env.BUILD_URL para conferir os detalhes."
                 sh 'docker build -t simplepythonflask .'
             }
         }
