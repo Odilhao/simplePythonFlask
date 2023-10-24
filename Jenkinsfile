@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+      		telegramSend "Job $env.JOB_NAME foi iniciado com a execução de numero $env.BUILD_NUMBER, acesse $env.BUILD_URL para conferir os detalhes"
                 sh 'docker build -t simplepythonflask .'
             }
         }
@@ -42,7 +43,7 @@ pipeline {
 	    sh 'docker stop teste'
 
 	telegramSend(message: 'Hello World', chatId: -4092859996)
-        telegramSend "Ola"
+	telegramSend "Job $env.JOB_NAME* finalizado com sucesso na execução de numero $env.BUILD_NUMBER"
 	}
         unstable {
             echo 'I am unstable :/'
@@ -50,7 +51,9 @@ pipeline {
         failure {
             echo 'Ocorreu uma falha'
 	    sh 'docker stop teste'
-        }
+        
+	telegramSend "Job $env.JOB_NAME* finalizado com falha na execução de numero $env.BUILD_NUMBER, acesse $env.BUILD_URL para conferir os detalhes"
+	}
         changed {
             echo 'Things were different before...'
         }
