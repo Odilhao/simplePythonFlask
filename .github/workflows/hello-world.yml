@@ -1,4 +1,4 @@
-name: 'Hello World'
+name: 'Container Build'
 
 on:
   push:
@@ -6,10 +6,20 @@ on:
   pull_request:
     branches: ["master"]
 
+env:
+  IMAGE_NAME: ci-cd-demo
+
 jobs:
   ci-cd:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
+      
     steps:   
       - uses: actions/checkout@v3
       - name: docker-build
-        run: docker build -t teste .
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME:${GITHUB_SHA}
