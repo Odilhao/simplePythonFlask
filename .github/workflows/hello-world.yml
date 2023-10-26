@@ -28,7 +28,7 @@ jobs:
         run: docker run --rm -tdi --name unit_test_app-${GITHUB_SHA} $IMAGE_NAME:${GITHUB_SHA}
 
       - name: Run Test
-        run: docker exec -ti unit_test_app-${GITHUB_SHA} nosetests --with-xunit --withcoverage --cover-package=project test_users.py
+        run: docker exec unit_test_app-${GITHUB_SHA} nosetests --with-xunit --withcoverage --cover-package=project test_users.py
 
       - name: Copy Test
         run: docker cp unit_test_app-${GITHUB_SHA}:/courseCatalog/nosetests.xml .
