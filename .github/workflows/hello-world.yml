@@ -33,4 +33,11 @@ jobs:
       - name: Copy Test
         run: docker cp unit_test_app-${GITHUB_SHA}:/courseCatalog/nosetests.xml .
 
+      - name: Publish Test Result
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            *.xml
+
         
