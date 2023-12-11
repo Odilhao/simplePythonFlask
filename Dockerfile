@@ -1,4 +1,4 @@
-FROM python:3.9.10-slim-bullseye
+FROM python:3.12.1-slim-bullseye
 
 WORKDIR courseCatalog/
 
