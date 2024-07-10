@@ -2,21 +2,21 @@ pipeline {
     agent any
 
     environment {
-        IMAGE-TAG="0.${BUILD_ID}"
+        IMAGE_TAG="0.${BUILD_ID}"
     }
 
     stages {
         stage("Build") {
             steps {
-                sh "docker build -t simple-python-flask:${IMAGE-TAG} ."
+                sh "docker build -t simple-python-flask:${IMAGE_TAG} ."
             }
         
         stage ("Teste") {
 
             steps{
-                sh "docker run -tdi --name simple-python-flask-${IMAGE-TAG} --rm simple-python-flask:${IMAGE-TAG}"
+                sh "docker run -tdi --name simple-python-flask-${IMAGE_TAG} --rm simple-python-flask:${IMAGE_TAG}"
 
-                sh "docker exec -ti simple-python-flask-${IMAGE-TAG} nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
+                sh "docker exec -ti simple-python-flask-${IMAGE_TAG} nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
             }
         }
 
