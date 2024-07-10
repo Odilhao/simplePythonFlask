@@ -10,7 +10,8 @@ pipeline {
             steps {
                 sh "docker build -t simple-python-flask:${IMAGE_TAG} ."
             }
-        
+        }
+
         stage ("Teste") {
 
             steps{
@@ -21,5 +22,4 @@ pipeline {
         }
 
     }
-    }
-}   
+}
