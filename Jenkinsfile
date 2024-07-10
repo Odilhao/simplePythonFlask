@@ -17,8 +17,21 @@ pipeline {
             steps{
                 sh "docker run -tdi --name simple-python-flask-${IMAGE_TAG} --rm simple-python-flask:${IMAGE_TAG}"
 
-                sh "docker exec -ti simple-python-flask-${IMAGE_TAG} nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
+                sh "docker exec simple-python-flask-${IMAGE_TAG} nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
             }
+        }
+
+    }
+
+    post {
+        success {
+            echo "Pipeline executada com sucesso"
+        }
+        failure {
+            echo "Pipeline Falhou"
+        }
+        cleanup {
+            sh "docker stop simple-python-flask-${IMAGE_TAG}"
         }
 
     }
