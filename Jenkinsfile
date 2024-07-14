@@ -13,6 +13,8 @@ podTemplate(containers: [
 
     node(POD_LABEL){
         container('docker'){
+
+        stage("Clona Git"){
             git 'http://192.168.88.20:3000/odilon/simplePythonFlask.git'
         }
 
@@ -28,6 +30,7 @@ podTemplate(containers: [
                 sh "docker exec simple-python-flask-${BUILD_ID} nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
         }
     }
+}
 
     post {
         success {
