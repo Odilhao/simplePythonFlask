@@ -11,13 +11,12 @@ podTemplate(containers: [
   volumes: [ hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')]
   ){
 
-    node(POD_LABEL)
-    {
+    node(POD_LABEL){
         container('docker'){
             git 'http://192.168.88.20:3000/odilon/simplePythonFlask.git'
         }
 
-    }
+
         stage("Build"){
                      sh "docker build -t simple-python-flask:${BUILD_ID} ."
         }
@@ -28,7 +27,7 @@ podTemplate(containers: [
 
                 sh "docker exec simple-python-flask-${BUILD_ID} nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
         }
-
+    }
 
     post {
         success {
