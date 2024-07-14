@@ -3,12 +3,11 @@ podTemplate(containers: [
     containerTemplate(
         name: 'docker',
         image: 'docker:dind',
-        command: 'sleep'
+        command: 'sleep',
         args: '99d',
         ttyEnabled: true,
         prviliged: true
-    )
-  ],
+    )],
   volumes: [ hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')]
   ){
 
