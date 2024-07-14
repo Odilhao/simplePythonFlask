@@ -11,11 +11,6 @@ podTemplate(containers: [
   volumes: [ hostPathVolume(hostPath: '/var/run/docker.sock', mountPath: '/var/run/docker.sock')]
   ){
 
-
-    environment {
-        IMAGE_TAG="0.${BUILD_ID}"
-    }
-
     node(POD_LABEL)
     {
         container('docker'){
@@ -24,14 +19,14 @@ podTemplate(containers: [
 
     }
         stage("Build"){
-                     sh "docker build -t simple-python-flask:${IMAGE_TAG} ."
+                     sh "docker build -t simple-python-flask:${BUILD_ID} ."
         }
 
         stage ("Teste") {
 
-                sh "docker run -tdi --name simple-python-flask-${IMAGE_TAG} --rm simple-python-flask:${IMAGE_TAG}"
+                sh "docker run -tdi --name simple-python-flask-${BUILD_ID} --rm simple-python-flask:${BUILD_ID}"
 
-                sh "docker exec simple-python-flask-${IMAGE_TAG} nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
+                sh "docker exec simple-python-flask-${BUILD_ID} nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
         }
 
 
@@ -43,7 +38,7 @@ podTemplate(containers: [
             echo "Pipeline Falhou"
         }
         cleanup {
-            sh "docker stop simple-python-flask-${IMAGE_TAG}"
+            sh "docker stop simple-python-flask-${BUILD_ID}"
         }
 
     }
