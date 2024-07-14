@@ -4,7 +4,7 @@ podTemplate(containers: [
         name: 'docker',
         image: 'docker:dind',
         command: 'sleep'
-        args: '99d'
+        args: '99d',
         ttyEnabled: true,
         prviliged: true
     )
