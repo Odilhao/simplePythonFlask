@@ -28,7 +28,7 @@ podTemplate(containers: [
 
                 sh "docker exec simple-python-flask-${BUILD_ID} nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
 
-                sh "docker stop simple-python-flask:${BUILD_ID}"
+                sh "docker stop simple-python-flask-${BUILD_ID}"
 
                 sh "docker tag simple-python-flask:${BUILD_ID} 192.168.88.20:8082/simple-python-flask:${BUILD_ID}"
         }
