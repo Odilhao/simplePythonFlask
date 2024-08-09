@@ -15,4 +15,4 @@ teste-app:
   script:
       - apt update && apt install -y python3-mysqldb libmariadb-dev gcc
       - pip install -r requirements.txt
-      - nosetests --with-xunit --with-coverage --cover-package=project test_users.py"
+      - nosetests --with-xunit --with-coverage --cover-package=project test_users.py
