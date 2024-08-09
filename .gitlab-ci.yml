@@ -35,6 +35,7 @@ build:
       - docker push ${CI_REGISTRY_IMAGE}:${CI_COMMIT_SHA}
 
 deploy_homolog:
+  stage: deploy
   dependencies:
     - build
   image: alpine
