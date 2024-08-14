@@ -24,7 +24,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
       - name: Login REGISTRY
-        uses: docker/login-actions
+        uses: docker/login-actions@v3
         with:
           registry: ${{ env.REGISTRY}}
           username: ${{ github.actor }}
