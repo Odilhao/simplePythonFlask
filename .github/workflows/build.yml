@@ -34,11 +34,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           image: ${{ env.REGISTRY}}/${{ github.repository_owner }}/${{ env.IMAGE_NAME}}
-      - name: Build e push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: Dockerfile
-          push: true
-          tags: ${{ steps.metadado.outputs.tags }}
-          labels: ${{ steps.metadado.outputs.labels }}
+      - name: "Build Image"
+        run: docker build . --file Dockerfile --tag ${{ env.REGISTRY}}/odilhao/${{ env.IMAGE_NAME}}
+      - name: "Push Image"
+        run: docker push ${{ env.REGISTRY}}/odilhao/${{ env.IMAGE_NAME}}
